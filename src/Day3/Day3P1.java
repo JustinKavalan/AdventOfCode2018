@@ -33,7 +33,7 @@ public class Day3P1 {
 
     }
 
-    private static List<Claim> parseInput(Scanner input) {
+    public static List<Claim> parseInput(Scanner input) {
         List<Claim> claims = new ArrayList<>();
 
         while (input.hasNext()) {
@@ -44,7 +44,9 @@ public class Day3P1 {
             String[] coordinates = tokens[2].replace(":", "").split(",");
             String[] size = tokens[3].split("x");
 
-            claims.add(new Claim(Integer.parseInt(coordinates[0]),
+            claims.add(new Claim(
+                    Integer.parseInt(tokens[0].replace("#", "")),
+                    Integer.parseInt(coordinates[0]),
                     Integer.parseInt(coordinates[1]),
                     Integer.parseInt(size[0]),
                     Integer.parseInt(size[1])));
@@ -83,11 +85,13 @@ class Coordinate {
 }
 
 class Claim {
+    public int id;
     public Coordinate Start;
     public int SizeX;
     public int SizeY;
 
-    public Claim(int coorX, int coorY, int sizeX, int sizeY) {
+    public Claim(int id, int coorX, int coorY, int sizeX, int sizeY) {
+        this.id = id;
         Start = new Coordinate(coorX, coorY);
         SizeX = sizeX;
         SizeY = sizeY;
